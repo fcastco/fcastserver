@@ -1,0 +1,2 @@
+# FCast configuration file
+UPLOAD_DIR = "uploads"
