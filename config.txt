@@ -1,2 +1,3 @@
 # FCast configuration file
 UPLOAD_DIR = "uploads"
+MOTOR_URI = "mongodb+srv://admin:[password]@cluster0-2prnr.mongodb.net/fcast?retryWrites=true&w=majority"
