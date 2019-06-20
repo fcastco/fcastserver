@@ -9,20 +9,49 @@
 	</head>
 	<body>
 		<h2>This page is under contruction! Any data uploaded will be immediately deleted!</h2>
-		<form action="/upload" method="post" enctype="multipart/form-data">
-			<div>
-				<label for="file_names">
-					Choose a file to upload (only PDF files for now):
-				</label>
-				<input type="file"
+      <div>
+          <table style="width:100%">
+             <tr>
+               <th>Filename</th>
+               <th>Delete Link</th>
+             </tr>
+             {% for uuid, filename in filenames.items() %}
+             <tr>
+               <td>{{filename}}</td>
+               <td>
+                    <form action="/file/delete" method="post">
+                       <input type="hidden" name="file_uuid" value="{{uuid}}">
+                       <input type="hidden" name="user_id" value="{{user_id}}">
+                       <button>Delete</button>
+                    </form>
+               </td>
+             </tr>
+             {% endfor %}
+            </table>
+      </div>
+      <div>
+		    <form action="/upload" method="post" enctype="multipart/form-data">
+			     <div>
+				     <label for="file_names">
+					     Choose a file to upload (only PDF files for now):
+				     </label>
+				     <input type="file"
 	               		       id="file_input"
 		                       name="file_names"
-                           accept=".pdf"
+                           accept=".pdf,.csv"
 		                       multiple>
-			</div>
-			<div>
-				<button>Submit</button>
-			</div>
+			     </div>
+			     <div>
+				     <button>Upload</button>
+			     </div>
+        </form>
+      <div>
+         <form action="/file/zip" method="post">
+             <input type="text" name="zip_password" />
+             <input type="hidden" name="user_id" value="{{user_id}}">
+             <button>Zip it!</button>
+         </form>
+      </div>
 	</body>
 </html>
 
