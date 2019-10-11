@@ -11,7 +11,11 @@ from sanic_session import Session, MongoDBSessionInterface
 from controllers.file import file_bp
 from uuid import uuid4
 
+from sanic_cors import CORS, cross_origin
+
+
 app = Sanic()
+CORS(app)
 app.blueprint(file_bp)
 jinja = SanicJinja2(app)
 app.config.from_envvar('MYAPP_SETTINGS')
